@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 2, Time elapsed: 35.669 s <<< FAILURE! - in TestSuite
+init(com.automationcalling.testsuites.BasicTests)  Time elapsed: 13.053 s  <<< FAILURE!
+io.github.bonigarcia.wdm.WebDriverManagerException: io.github.bonigarcia.wdm.WebDriverManagerException: MicrosoftWebDriver 6.17134 for WIN64 not found in https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+	at com.automationcalling.testsuites.BasicTests.init(BasicTests.java:19)
+Caused by: io.github.bonigarcia.wdm.WebDriverManagerException: MicrosoftWebDriver 6.17134 for WIN64 not found in https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+	at com.automationcalling.testsuites.BasicTests.init(BasicTests.java:19)
+

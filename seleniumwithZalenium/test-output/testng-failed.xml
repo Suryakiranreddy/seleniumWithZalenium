@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [ParallelAutomation]" parallel="tests">
+  <test thread-count="5" name="firefox_remote(failed)" parallel="tests">
+    <parameter name="executionType" value="remote"/>
+    <parameter name="browsertype" value="firefox"/>
+    <classes>
+      <class name="com.automationcalling.testsuites.BasicTests">
+        <methods>
+          <include name="init"/>
+          <include name="articleLinkTest"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.automationcalling.testsuites.BasicTests -->
+    </classes>
+  </test> <!-- firefox_remote(failed) -->
+  <test thread-count="5" name="Chrome_remote(failed)" parallel="tests">
+    <parameter name="executionType" value="remote"/>
+    <parameter name="browsertype" value="chrome"/>
+    <classes>
+      <class name="com.automationcalling.testsuites.BasicTests">
+        <methods>
+          <include name="init"/>
+          <include name="articleLinkTest"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.automationcalling.testsuites.BasicTests -->
+    </classes>
+  </test> <!-- Chrome_remote(failed) -->
+</suite> <!-- Failed suite [ParallelAutomation] -->

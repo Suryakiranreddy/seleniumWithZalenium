@@ -1,0 +1,70 @@
+pipeline {
+    agent {
+        node {
+            label 'docker' && 'maven'
+        }
+    }
+    stages { 	
+        stage('Build Jar') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+        stage('Build Image') {
+            steps {
+                script {
+                	app = docker.build("vinsdocker/containertest")
+                }
+            }
+        }
+        stage('Push Image') {
+            steps {
+                script {
+			        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+			        	app.push("${BUILD_NUMBER}")
+			            app.push("latest")
+			        }
+                }
+            }
+        }        
+    }
+}
+
+
+
+node {
+stage (‘SCM checkout’){
+git “https://gitlab.com/mbabilo/experitest”
+}
+stage (‘Build’){
+dir(“comtest”) {
+sh “mvn clean install”
+}
+dir(“comtest/target”) {
+sh “java -jar com.test-1.0-SNAPSHOT.jar”
+}
+}
+}
+
+
+pipeline {
+    agent any
+    tools {
+        maven 'mavenHome'
+        jdk 'JavaHome'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'maven clean'
+                //ABC indicates the folder name where the pom.xml file resides
+                bat ' mvn -f ABC/pom.xml clean install'  
+            }
+            post {
+                success {
+                    echo 'Now Archiving'
+                }
+            }
+        }
+    }
+}

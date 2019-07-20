@@ -1,0 +1,46 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ParallelAutomation" thread-count="5" parallel="tests" >
+    <!--  <test name="Chrome_remote">
+        <parameter name="browsertype" value="chrome"/>
+        <parameter name="executionType" value="remote"/>
+        <classes>
+            <class name="com.automationcalling.testsuites.BasicTests"/>
+        </classes>
+    </test>
+    <test name="firefox_remote">
+        <parameter name="browsertype" value="firefox"/>
+        <parameter name="executionType" value="remote"/>
+        <classes>
+            <class name="com.automationcalling.testsuites.BasicTests"/>
+        </classes>
+    </test>
+     -->    <test name="chrome_local">
+        <parameter name="browsertype" value="chrome"/>
+        <parameter name="executionType" value="local"/>
+        <classes>
+            <class name="com.automationcalling.testsuites.BasicTests"/>
+        </classes>
+    </test> 
+     <test name="Fiefox_local">
+        <parameter name="browsertype" value="firefox"/>
+        <parameter name="executionType" value="local"/>
+        <classes>
+            <class name="com.automationcalling.testsuites.BasicTests"/>
+        </classes>
+    </test>  
+     <test name="edge_local">
+        <parameter name="browsertype" value="edge"/>
+        <parameter name="executionType" value="local"/>
+        <classes>
+            <class name="com.automationcalling.testsuites.BasicTests"/>
+        </classes>
+    </test> 
+   
+     <test name="safari_cloud">
+        <parameter name="browsertype" value="safari"/>
+        <parameter name="executionType" value="cloud"/>
+        <classes>
+            <class name="com.automationcalling.testsuites.BasicTests"/>
+        </classes>
+    </test>  
+</suite>
