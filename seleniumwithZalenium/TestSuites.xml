@@ -1,6 +1,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="ParallelAutomation" thread-count="5" parallel="tests" >
-    <!--  <test name="Chrome_remote">
+<suite name="ParallelAutomation" thread-count="1" parallel="tests" >
+       <test name="Chrome_remote1">
+        <parameter name="browsertype" value="chrome"/>
+        <parameter name="executionType" value="remote"/>
+        <classes>
+            <class name="com.automationcalling.testsuites.BasicTests"/>
+        </classes>
+    </test>
+    <test name="firefox_remote2">
+        <parameter name="browsertype" value="firefox"/>
+        <parameter name="executionType" value="remote"/>
+        <classes>
+            <class name="com.automationcalling.testsuites.BasicTests"/>
+        </classes>
+    </test>
+    <test name="Chrome_remote">
         <parameter name="browsertype" value="chrome"/>
         <parameter name="executionType" value="remote"/>
         <classes>
@@ -13,8 +27,8 @@
         <classes>
             <class name="com.automationcalling.testsuites.BasicTests"/>
         </classes>
-    </test>
-     -->    <test name="chrome_local">
+    </test> 
+          <!-- <test name="chrome_local">
         <parameter name="browsertype" value="chrome"/>
         <parameter name="executionType" value="local"/>
         <classes>
@@ -42,5 +56,5 @@
         <classes>
             <class name="com.automationcalling.testsuites.BasicTests"/>
         </classes>
-    </test>  
+    </test>   -->
 </suite>

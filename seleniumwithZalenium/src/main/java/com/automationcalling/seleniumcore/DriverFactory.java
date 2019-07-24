@@ -11,18 +11,17 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
-import static com.automationcalling.commonutil.Utils.returnProperties;
 
 public class DriverFactory {
     WebDriver driver;
     DesiredCapabilities caps;
     public  String USERNAME = "suryakiran14";
     public  String AUTOMATE_KEY = "TWtczMYygyckEgLGz6ND";
-    public String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+   // public String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     public WebDriver getBrowserInit(String browserType, String executionType) throws IOException {
         if (executionType.equalsIgnoreCase("remote")) {      	
@@ -36,22 +35,27 @@ public class DriverFactory {
     }
 
     public void initializeRemoteDriver(String browserType) throws IOException {
+    	try{
         if (browserType.equalsIgnoreCase("chrome")) {
-          /*  caps = DesiredCapabilities.chrome();*/
-        	FirefoxOptions options = new FirefoxOptions();
+            caps = DesiredCapabilities.chrome();
+        	//FirefoxOptions options = new FirefoxOptions();
             System.out.println("chrome");
-            driver = new RemoteWebDriver(new URL("http://192.168.1.191:4444/grid/console"), options);
+            driver = new RemoteWebDriver(new URL("http://192.168.1.191:4444/wd/hub"), caps);
         } else if (browserType.equalsIgnoreCase("firefox")) {
-           /* caps = DesiredCapabilities.firefox();*/
-            ChromeOptions options = new ChromeOptions();
+            caps = DesiredCapabilities.firefox();
+           // ChromeOptions options = new ChromeOptions();
             System.out.println("firefox");
-            driver = new RemoteWebDriver(new URL("http://192.168.1.191:4444/grid/console"), options);
+            driver = new RemoteWebDriver(new URL("http://192.168.1.191:4444/wd/hub"), caps);
         }
 
       
         System.out.println("url");
         driver.get("https://automationcalling.com");
         System.out.println("url");
+    	}catch(Exception e){
+    		e.getMessage();
+    		e.printStackTrace();
+    	}
     }
 
     public void initializeCloudDriver(String browserType) throws IOException {
@@ -73,8 +77,9 @@ public class DriverFactory {
             caps.setCapability("resolution", "1024x768");
             caps.setCapability("name", "Bstack-[Java] Sample Test");
         }
-        driver =new RemoteWebDriver(new URL(URL), caps);
+       // driver =new RemoteWebDriver(new URL(URL), caps);
         driver.get("https://automationcalling.com");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
 

@@ -16,6 +16,7 @@ public class SeleniumUtil{
     public void maximizeWindow() {
         driver.manage().window().maximize();
     }
+    		
 
     public void closeBrowser() {
         try {
