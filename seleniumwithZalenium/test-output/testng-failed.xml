@@ -14,9 +14,9 @@
       </class> <!-- com.automationcalling.testsuites.BasicTests -->
     </classes>
   </test> <!-- firefox_remote(failed) -->
-  <test thread-count="5" name="Chrome_remote(failed)" parallel="tests">
+  <test thread-count="5" name="firefox_remote2(failed)" parallel="tests">
     <parameter name="executionType" value="remote"/>
-    <parameter name="browsertype" value="chrome"/>
+    <parameter name="browsertype" value="firefox"/>
     <classes>
       <class name="com.automationcalling.testsuites.BasicTests">
         <methods>
@@ -26,5 +26,5 @@
         </methods>
       </class> <!-- com.automationcalling.testsuites.BasicTests -->
     </classes>
-  </test> <!-- Chrome_remote(failed) -->
+  </test> <!-- firefox_remote2(failed) -->
 </suite> <!-- Failed suite [ParallelAutomation] -->
