@@ -1,0 +1,111 @@
+Purpose	Function	Command
+Driver Initialization Basics:		Firefox WebDriver driver = new FirefoxDriver(); 
+		Chrome WebDriver driver = new ChromeDriver();
+		Safari Driver WebDriver driver = new InternetExplorerDriver();  
+		Internet Explorer WebDriver driver = new SafariDriver();
+		
+Driver Initialization Advanced:	A. Load firefox from different location:	System.setProperty(“webdriver.firfox.bin”,“path/to/firfox/binary”); FirefoxProfilefp= new FirefoxProfile();
+	B. Load firfox addons	File file=new File(“path/to/extension.xpi”); fp.addextension(file)
+		
+Operations:	Launch Webpage:	"get(""www.webdriverinselenium.com"");"
+	Click Button/Image/Link	"findElement(By.id(""submit"")).click();"
+	Disable a Field:	getElementsByName('') [0].setAttribute('disabled', '')
+	Enable a Field :	getElementsByName('') [0].removeAttribute('disabled');
+	Screenshot : 	"File snapshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); FileUtils.copyFile(snapshot, new File(""C:\\screenshot.jpg""));"
+	Print the Title of the Page:	String pagetitle = driver.getTitle(); System.out.print(pagetitle);
+	input some text	driver.find_element(:id, 'TextArea').send_keys 'InputText'
+	send keyboard actions, press `ctral+a` & `backspace`	driver.find_element(:id, 'TextArea').send_keys [:contol, 'a'], :backspace
+	visibility	driver.find_element(:id,'Element').displayed?
+	Get text	driver.find_element(:id,'Element').text
+	Get attribue	driver.find_element(:id, 'Element').attribute('class')
+	Get the select element        	"select = driver.find_element(:tag_name, ""select"")"
+	Get all the options for this element	"all_options = select.find_elements(:tag_name, ""option"")"
+Delete cookies	By name	"driver.manage.delete_cookie(""CookieName"")"
+	Delete All cookie	driver.manage.delete_all_cookies
+Java Script Dialouge	handle javascript dialog	"# get the alert :   a = driver.switch_to.alert
+# operation on the alert:   if a.text == 'A value you are looking for'
+  a.dismiss
+  else
+  a.accept
+  end"
+	Select the options	"all_options.each do |option|
+ puts ""Value is: "" + option.attribute(""value"")
+ option.click
+end
+"
+Checkbox/Radio	Check if it is selected	driver.find_element(:id, 'CheckBox').selected?
+	Select the element	driver.find_element(:id, 'CheckBox').click
+	Deselect the element	driver.find_element(:id, 'CheckBox').clear
+Wait/Sleep	Implicit Wait: 	manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	Explicit Wait:	WebDriverWait wait = new WebDriverWait(driver, 20);
+	Sleep :	Thread.Sleep(10);
+	wait for a specific element to show up 	wait = Selenium::WebDriver::Wait.new(:timeout => 10) (set the timeout to 10 seconds)
+	wait 10 seconds until the element appear	"wait.until { driver.find_element(:id => ""foo"") }"
+		
+Locators:	Locating by ID	"driver.findElement(By.id(""q"")).sendKeys(""Se lenium 3"");"
+	Locating by Name	"driver.findElement(By.name(""q"")).sendKeys (""Selenium 3"");"
+	Locating by Xpath	"driver.findElement(By.xpath(""//input[@id='q'])).sendKeys(""Selenium 3"");"
+	Locating Hyperlinksby Link Text	"driver.FindElement(By.LinkText(""edit this page"")).Click();"
+	Locating by DOM	dom =document.getElementById('signinForm')
+	Locating by CSS	"driver.FindElement(By.CssSelector(""#rightbar> .menu >li:nth-of-type(2) > h4""));"
+	Locating by ClassName	"driver.findElement(By.className(""profileheader""));"
+	Locating by TagName	"driver.findElement(By.tagName(""select"")).C lick();"
+	Locating by LinkText	"driver.findElement(By.linkText(""NextP age"")).click();"
+	Locating by PartialLinkText	"driver.findElement(By.partialLinkText("" NextP"")).click();"
+		
+Navigators:	Navigate to url	driver.get(“http://newexample.com”); driver.navigate().to(“http://newexample.com”)
+	Refresh page	driver.navigate().refresh()
+	Navigate forwards in browser history	driver.navigate().forward()
+	Navigate backwards in browser history	driver.navigate().back()
+		
+Windows Handle	switch to newly created window	String curWindow=driver.getWindowHandle();
+	Get all window handles	"Set<String> handles = getWindowHandles(); For(string handle: handles) {If (!handle.equals(curWindow)) {driver.switchTo().window(handle);
+}
+}"
+		
+Frames	Using Frame Index:	driver.switchTO().frame(1);
+	Using Name of Frame:	driver.switchTo().frame(“name”)
+	Using web Element Object:	driver.switchTO().frame(element);
+	Get back to main document:	driver.switchTO().defaultContent();
+		
+Alerts:	Capture the alert message:	driver.switchTO().alert.getText();
+	Click on the ‘OK’ button of the alert:	driver.switchTO().alert.accept();
+	Click on the ‘Cancel’ button of the alert:	driver.switchTO().alert.dismiss();
+	Send some data to alert box:	driver.switchTO().alert.sendKeys(“Text”)
+		
+JUNIT annotations:	@Test: test method to run with public void return type	
+	@After: method to run after test method	
+	@AfterClass: method to run before test method	
+	@Before: method to run before test method	
+	@BeforeClass: method to run once before any of the test methods in the class have been executed	
+	@Ignore: This annotation is used to ignore a method	
+		
+TestNG annotations:	@test: This annotation marks a class or method as a part of a test	
+	@BeforeSuite: This annotation makes sure that the method only run once before all the tests have run	
+	@AfterSuite: This annotation makes sure that the method runs once after the execution of all the tests	
+	@BeforeTest: This annotation will make sure that the method marked with this annotation runs before the first method annotated with @test	
+	@AfterTest: This annotation will make sure that the method marked with this annotation runs after all the methods annotated with @test execute all the classes inside <test> tag in the testng.xml file.	
+	@BeforeGroups : A method annotated with this annotation will run before all the first test methods run in that specific group	
+	@AfterGroups: A method annotated with this annotation will run after all the test methods run in that specific group	
+	@BeforeClass: A method annotated with this annotation will run only once per class and before all the first test methods run	
+	@AfterClass: A method annotated with this annotation will run only once per class and after all the test methods run	
+	@BeforeMethod: A method annotated with this annotation will run before every @test annotated method	
+	@AfterMethod: A method annotated with this annotation will run after every @test annotated method	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
